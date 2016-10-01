@@ -38,7 +38,7 @@ public class DBUtil {
     protected static String DATABASE_PATH = null;
     protected static GraphDatabaseService database = null;
 
-    private final static String MYSQL_DB = "ictc_bi";
+    private final static String MYSQL_DB = "recodb";
     private final static String MYSQL_PORT = "3306";
     private final static String MYSQL_HOST = "localhost";
     private final static String MYSQL_USER = "root";
