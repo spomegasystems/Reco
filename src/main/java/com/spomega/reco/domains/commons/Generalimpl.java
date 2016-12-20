@@ -8,6 +8,8 @@ package com.spomega.reco.domains.commons;
 
 
 
+import static com.spomega.reco.domains.main.Movie.TITLE;
+import static com.spomega.reco.domains.main.Movie.TYPE;
 import com.spomega.repo.util.ICTCUtil;
 import com.spomega.repo.util.Neo4jServices;
 import com.spomega.repo.util.RecoKonstants;
@@ -31,6 +33,8 @@ public class Generalimpl implements GeneralInterface {
     public static String CREATION_BY = RecoKonstants.CREATED_BY;
     public static String LAST_MODIFIED = RecoKonstants.LAST_MODIFIED_DATE;
     public static String UPDATED_BY = RecoKonstants.UPDATED_BY;
+    public static String TITLE = "title";
+    public static String TYPE = "type";
     
     Node underlyingNode = null;
 
@@ -39,6 +43,33 @@ public class Generalimpl implements GeneralInterface {
         this.underlyingNode = node;
         
         
+    }
+    
+    
+    public String getTitle() {
+        try {
+            return (String) underlyingNode.getProperty(TITLE);
+
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
+    public void setTitle(String title) {
+          underlyingNode.setProperty(TITLE, title);
+    }
+
+    public String getType() {
+         try {
+            return (String) underlyingNode.getProperty(TYPE);
+
+        } catch (Exception e) {
+        }
+        return ""; 
+    }
+
+    public void setType(String type) {
+          underlyingNode.setProperty(TYPE, type);
     }
     
     

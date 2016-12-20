@@ -8,6 +8,7 @@ package com.spomega.reco.domains.main;
 
 import com.spomega.reco.domains.commons.GeneralInterface;
 import com.spomega.reco.domains.commons.Status;
+import static com.spomega.reco.domains.main.Person.LASTNAME;
 import org.neo4j.graphdb.Node;
 
 /**
@@ -17,10 +18,18 @@ import org.neo4j.graphdb.Node;
  * description:
  */
 public class Movie extends Status implements GeneralInterface{
+    
+   
     Node underlyingNode;
     public Movie(Node underlyingNode) {
         super(underlyingNode);
         this.underlyingNode = underlyingNode;
     }
+    
+    
+
+            
+            
+            
 
 }

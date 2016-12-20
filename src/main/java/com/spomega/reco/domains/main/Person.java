@@ -7,9 +7,7 @@
 package com.spomega.reco.domains.main;
 
 import com.spomega.reco.domains.commons.GeneralInterface;
-import com.spomega.reco.domains.commons.Generalimpl;
 import com.spomega.reco.domains.commons.Status;
-import com.spomega.reco.domains.commons.StatusInterface;
 import org.neo4j.graphdb.Node;
 
 /**
@@ -26,14 +24,20 @@ public class Person extends Status implements GeneralInterface{
     public static String ADDRESS  ="address";
     public static String PHONENUMBER ="phonenumber";
     
+   
     
    
     Node underlyingNode;
     public Person(Node node) {
         super(node);
         underlyingNode = node;
+         
+          
     }
 
+   
+     
+     
     public String getFirstName() {
          try {
             return (String) underlyingNode.getProperty(FIRSTNAME);

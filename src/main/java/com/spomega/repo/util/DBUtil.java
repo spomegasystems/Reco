@@ -60,7 +60,7 @@ public class DBUtil {
       public GraphDatabaseService startDB() {
         GraphDatabaseService graphdb = null;
         String glassishinstanceRootPropertyName = "com.sun.aas.instanceRoot";
-        String configFile =  System.getProperty(glassishinstanceRootPropertyName)+"/config/new.conf";
+        String configFile =  System.getProperty(glassishinstanceRootPropertyName)+"/config/reco.conf";
         System.out.println("File " + configFile);
       
         Properties dbProperties = new Properties();
@@ -87,7 +87,7 @@ public class DBUtil {
             log.log(Level.INFO, "DB Port - :{0}", PORT);
 
             graphdb = new GraphDatabaseFactory()
-                    .newEmbeddedDatabaseBuilder(new File(configFile))
+                    .newEmbeddedDatabaseBuilder( DATABASE_PATH)
                     .setConfig(GraphDatabaseSettings.allow_store_upgrade, dbProperties.getProperty("allow_store_upgrade"))
                     .setConfig(GraphDatabaseSettings.pagecache_memory, dbProperties.getProperty("dbms.pagecache.memory"))
                     .newGraphDatabase();
