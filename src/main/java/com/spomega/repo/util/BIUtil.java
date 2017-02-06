@@ -156,25 +156,28 @@ public class BIUtil {
     public static void createTables(Boolean fillTables) throws Exception {
         try {
             String time = "year INTEGER, month INTEGER";
-            String common = "title VARCHAR(60),type VARCHAR(60),personnId int(11) ";
+            String common = "title VARCHAR(60),type VARCHAR(60) ";
             String person = "firstname VARCHAR(50),lastname VARCHAR(50),address VARCHAR(50),phonenumber VARCHAR(50) ";
+            String gadget ="itemname VARCHAR(50),type VARCHAR(60)";
             String community = ", community VARCHAR(50)";
             
-         //   String 
+         //String 
            
            
 
             DBUtil.getInstance().createTable(TABLE_MOVIE, common);
-            DBUtil.getInstance().createTable(TABLE_GADGET, common);
+            DBUtil.getInstance().createTable(TABLE_GADGET, gadget);
             DBUtil.getInstance().createTable(TABLE_GAME, common);
             DBUtil.getInstance().createTable(TABLE_BOOK,common);
             DBUtil.getInstance().createTable(TABLE_PERSON,person);
+             
+            
             
 
 
            
 
-        // DBUtil.getInstance().runSQLUpdate(sql);
+         DBUtil.getInstance().runSQLUpdate(sql);
 
           // if (fillTables) { BIDataManager.getInstance().update(); }
         } catch (SQLException e) {
