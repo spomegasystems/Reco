@@ -23,6 +23,7 @@ public class BIUtil {
     protected final static String TABLE_GAME = "re_game";
     protected final static String TABLE_GADGET = "re_gadget";
     protected final static String TABLE_PERSON = "re_person";
+     protected final static String TABLE_TRANSACTION = "re_transaction";
     
     protected final static ArrayList<String> TABLES = new ArrayList<>(Arrays.asList(TABLE_MOVIE , TABLE_BOOK , TABLE_GAME,TABLE_GADGET));
     // </editor-fold>
@@ -33,6 +34,8 @@ public class BIUtil {
     protected final static String DATA_SET_GAME = "game_data";
     protected final static String DATA_SET_GADGET = "gadget_data";
     protected final static String DATA_SET_PERSON = "person_data";
+    protected final static String DATA_SET_TRANSACTION = "transaction_data";
+    
     
     protected String getIndicatorTable(String data_set) throws Exception {
         switch (data_set) {
@@ -41,6 +44,7 @@ public class BIUtil {
             case DATA_SET_GAME: return TABLE_GAME;
             case DATA_SET_GADGET: return TABLE_GADGET;
             case DATA_SET_PERSON: return TABLE_PERSON;   
+            case DATA_SET_TRANSACTION: return TABLE_TRANSACTION;
             default:
                 throw new Exception("Invalid data set");
         }
@@ -156,10 +160,10 @@ public class BIUtil {
     public static void createTables(Boolean fillTables) throws Exception {
         try {
             String time = "year INTEGER, month INTEGER";
-            String common = "title VARCHAR(60),type VARCHAR(60) ";
+            String common = "title VARCHAR(60),type VARCHAR(60),price INT(11) ";
             String person = "firstname VARCHAR(50),lastname VARCHAR(50),address VARCHAR(50),phonenumber VARCHAR(50) ";
-            String gadget ="itemname VARCHAR(50),type VARCHAR(60)";
-            String community = ", community VARCHAR(50)";
+            String gadget ="itemname VARCHAR(50),type VARCHAR(50),price INT(11)";
+            String transaction = "personId VARCHAR(50),itemId VARCHAR(50),price INT(11) ";
             
          //String 
            
@@ -170,10 +174,11 @@ public class BIUtil {
             DBUtil.getInstance().createTable(TABLE_GAME, common);
             DBUtil.getInstance().createTable(TABLE_BOOK,common);
             DBUtil.getInstance().createTable(TABLE_PERSON,person);
+            DBUtil.getInstance().createTable(TABLE_TRANSACTION,transaction); 
+            
+                String sql = "INSERT INTO "+TABLE_INFO+" (`id`, `property`, `description`, `value`, `modified_by`, `created_at`, `updated_at`) VALUES "
+            + "(1, 'MOFA_FARMER_TARGET', 'Number of farmers MOFA agents need to register by end of project.', '1000', 1, '2016-08-10 12:15:19', '2016-08-02 11:50:22')";
              
-            
-            
-
 
            
 
