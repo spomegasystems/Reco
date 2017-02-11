@@ -174,15 +174,20 @@ public class BIUtil {
             DBUtil.getInstance().createTable(TABLE_GAME, common);
             DBUtil.getInstance().createTable(TABLE_BOOK,common);
             DBUtil.getInstance().createTable(TABLE_PERSON,person);
-            DBUtil.getInstance().createTable(TABLE_TRANSACTION,transaction); 
+            DBUtil.getInstance().createTable(TABLE_TRANSACTION,transaction);
             
-                String sql = "INSERT INTO "+TABLE_INFO+" (`id`, `property`, `description`, `value`, `modified_by`, `created_at`, `updated_at`) VALUES "
-            + "(1, 'MOFA_FARMER_TARGET', 'Number of farmers MOFA agents need to register by end of project.', '1000', 1, '2016-08-10 12:15:19', '2016-08-02 11:50:22')";
-             
+          String sql = "INSERT INTO "+ TABLE_PERSON+" (`id`, `firstname`, `lastname`, `address`, `phonenumber`) VALUES ";
+            for(int i=0;i<50;i++)
+             {  
+               
+                sql += "('', 'firstname"+i+"', 'lastname"+i+"', 'P.O. Box 100"+i+"','024600582"+i+"'), ";
+                
+               
+             }
 
            
-
-         DBUtil.getInstance().runSQLUpdate(sql);
+        DBUtil.getInstance().runSQLUpdate(sql);
+        
 
           // if (fillTables) { BIDataManager.getInstance().update(); }
         } catch (SQLException e) {

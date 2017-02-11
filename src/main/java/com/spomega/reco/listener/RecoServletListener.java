@@ -50,10 +50,10 @@ public class RecoServletListener implements ServletContextListener {
 
         System.out.println("-----------------------------Initializing MySQL Database-------------------------------------");
         try {
-            //  DBUtil.getInstance().startMysqlDB();
-            //if (!BIServices.databaseExist()) { BIServices.createDatabase(); }
+              DBUtil.getInstance().startMysqlDB();
+           // if (!BIServices.databaseExist()) { BIServices.createDatabase(); }
           // 
-             // if (!BIUtil.tablesExist()) { BIUtil.createTables(true); }
+              if (!BIUtil.tablesExist()) { BIUtil.createTables(true); }
         } catch (Exception e) {
             System.out.println("Unable to initialize MySQL DB");
             e.printStackTrace();
