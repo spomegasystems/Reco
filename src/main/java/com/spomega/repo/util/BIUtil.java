@@ -156,6 +156,29 @@ public class BIUtil {
 
         return exists;
     }
+    
+    public static String itemSave(String table){
+         String itemSql ="INSERT INTO "+ table+" (`id`, `title`, `type`, `price`) VALUES "; 
+         
+            for(int i=0;i<50;i++)
+             {  
+               
+                
+                if(i==49){
+                     itemSql += "(NULL,'title"+i+"', 'type"+i+"', '100"+i+"')";
+                }
+                else
+                {
+                    itemSql += "(NULL,'title"+i+"', 'type"+i+"', '100"+i+"'), ";
+ 
+                }
+               
+             }
+
+         return itemSql;
+    }
+          
+            
 
     public static void createTables(Boolean fillTables) throws Exception {
         try {
@@ -177,16 +200,35 @@ public class BIUtil {
             DBUtil.getInstance().createTable(TABLE_TRANSACTION,transaction);
             
           String sql = "INSERT INTO "+ TABLE_PERSON+" (`id`, `firstname`, `lastname`, `address`, `phonenumber`) VALUES ";
+          String gadgetSql =  "INSERT INTO "+ TABLE_GADGET+" (`id`, `itemname`, `type`, `price`) VALUES ";
+         
             for(int i=0;i<50;i++)
              {  
                
-                sql += "('', 'firstname"+i+"', 'lastname"+i+"', 'P.O. Box 100"+i+"','024600582"+i+"'), ";
                 
+                if(i==49){
+                     sql += "(NULL,'firstname"+i+"', 'lastname"+i+"', 'P.O. Box 100"+i+"','024600582"+i+"')";
+                     gadgetSql+="(NULL,'itemname"+i+"', 'type"+i+"', '100"+i+"')";
+
+                     
+                }
+                else
+                {
+                    sql += "(NULL,'firstname"+i+"', 'lastname"+i+"', 'P.O. Box 100"+i+"','024600582"+i+"'), ";
+ 
+                }
                
              }
 
            
         DBUtil.getInstance().runSQLUpdate(sql);
+        DBUtil.getInstance().runSQLUpdate(itemSave(TABLE_BOOK));
+        DBUtil.getInstance().runSQLUpdate(itemSave(TABLE_MOVIE));
+        DBUtil.getInstance().runSQLUpdate(itemSave(TABLE_GAME));
+        
+        
+        
+        
         
 
           // if (fillTables) { BIDataManager.getInstance().update(); }
