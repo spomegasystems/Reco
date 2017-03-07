@@ -24,6 +24,7 @@ public class BIUtil {
     protected final static String TABLE_GADGET = "re_gadget";
     protected final static String TABLE_PERSON = "re_person";
      protected final static String TABLE_TRANSACTION = "re_transaction";
+     protected final static String TABLE_FRIENDS = "re_friend";
     
     protected final static ArrayList<String> TABLES = new ArrayList<>(Arrays.asList(TABLE_MOVIE , TABLE_BOOK , TABLE_GAME,TABLE_GADGET));
     // </editor-fold>
@@ -178,7 +179,13 @@ public class BIUtil {
          return itemSql;
     }
           
-            
+ 
+   private String makeFriends(int numberOfPeople)
+   {
+       
+      String sql = "INSERT INTO "+ TABLE_FRIENDS+" (`id`, `firstname`, `lastname`, `address`, `phonenumber`) VALUES ";
+       return "";
+   }
 
     public static void createTables(Boolean fillTables) throws Exception {
         try {
