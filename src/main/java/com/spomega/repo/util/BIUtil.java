@@ -180,11 +180,35 @@ public class BIUtil {
     }
           
  
-   private String makeFriends(int numberOfPeople)
+   public static String makeFriends(int numberOfPeople)
    {
+       int y =0;
+       int x = 0;
        
-      String sql = "INSERT INTO "+ TABLE_FRIENDS+" (`id`, `firstname`, `lastname`, `address`, `phonenumber`) VALUES ";
-       return "";
+      String sql = "INSERT INTO "+ TABLE_FRIENDS+" (`id`, `person_id`, `friend_id`) VALUES  ";
+      
+      for(int i=0;i<numberOfPeople;i++)
+      {
+        
+          x = y+2;
+          
+          if(i==numberOfPeople-1)
+          {
+               int t = numberOfPeople-1;
+               sql+= "(NULL,"+numberOfPeople+","+t+");";
+          }
+          else
+          if(i%2!=0)
+          {
+              
+              sql+= "(NULL,"+y+","+x+"),";
+             
+          }
+          
+           y++;
+      }
+      
+       return sql;
    }
 
     public static void createTables(Boolean fillTables) throws Exception {
@@ -222,7 +246,7 @@ public class BIUtil {
                 else
                 {
                     sql += "(NULL,'firstname"+i+"', 'lastname"+i+"', 'P.O. Box 100"+i+"','024600582"+i+"'), ";
- 
+                    gadgetSql+="(NULL,'itemname"+i+"', 'type"+i+"', '100"+i+"'),";
                 }
                
              }
@@ -232,7 +256,8 @@ public class BIUtil {
         DBUtil.getInstance().runSQLUpdate(itemSave(TABLE_BOOK));
         DBUtil.getInstance().runSQLUpdate(itemSave(TABLE_MOVIE));
         DBUtil.getInstance().runSQLUpdate(itemSave(TABLE_GAME));
-        
+        DBUtil.getInstance().runSQLUpdate(gadgetSql);
+        DBUtil.getInstance().runSQLUpdate(makeFriends(100));
         
         
         

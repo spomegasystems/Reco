@@ -34,14 +34,32 @@ public class TestServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String sql = "INSERT INTO "+ "person"+" (`id`, `firstname`, `lastname`, `address`, `phonenumber`) VALUES ";
-            for(int i=0;i<50;i++)
-             {  
-               
-                sql += "('', 'firstname"+i+"', 'lastname"+i+"', 'P.O. Box 100"+i+"','024600582"+i+"'), ";
-                
-               
-             }
+             int x= 0;
+             int y =1;
+         String sql = "INSERT INTO re_freinds  (`id`, `person_id`, `friend_id`) VALUES  ";
+        
+       for(int i=0;i<100;i++)
+      {
+        
+          x = y+2;
+          
+          if(i==(100-1))
+          {
+               int t = 100-1;
+               sql+= "(NULL,"+100+","+t+");";
+          }
+          else 
+          {
+             if(i%2!=0)
+          {
+              
+              sql+= "(NULL,"+i+","+x+"),";
+          }
+             
+          }
+          
+         y++;
+      }
             System.out.println(sql);
             
             out.print(sql);
