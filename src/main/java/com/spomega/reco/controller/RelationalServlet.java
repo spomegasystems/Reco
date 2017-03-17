@@ -5,8 +5,13 @@
  */
 package com.spomega.reco.controller;
 
+import com.spomega.repo.util.DBUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,8 +39,25 @@ public class RelationalServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-       
-            
+         Random random = new Random();
+      
+         
+         String sql = "INSERT INTO "+"re_transaction"+" (`id`, `personid`, `itemId`, `price`, `itemtype`) VALUES ";
+         for(int i=0;i<100;i++)
+         {
+             if(i==99)
+              sql += "(NULL,'"+random.nextInt(50)+"', 'title"+random.nextInt(50)+"', '"+random.nextInt(1000)+"','movie');";
+             else
+                sql += "(NULL,'"+random.nextInt(50)+"', 'title"+random.nextInt(50)+"', '"+random.nextInt(1000)+"','movie'),";   
+         }
+         
+         
+        try {
+                out.println(sql);
+                DBUtil.getInstance().runSQLUpdate(sql);
+            } catch (SQLException ex) {
+                Logger.getLogger(RelationalServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
         }
     }
