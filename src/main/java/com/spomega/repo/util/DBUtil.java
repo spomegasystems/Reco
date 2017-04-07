@@ -6,7 +6,6 @@
 
 package com.spomega.repo.util;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -21,7 +20,10 @@ import java.util.logging.Logger;
 import org.neo4j.graphdb.GraphDatabaseService;
 import org.neo4j.graphdb.factory.GraphDatabaseFactory;
 import org.neo4j.graphdb.factory.GraphDatabaseSettings;
-
+import org.neo4j.kernel.GraphDatabaseAPI;
+import org.neo4j.server.WrappingNeoServerBootstrapper;
+import org.neo4j.server.configuration.Configurator;
+import org.neo4j.server.configuration.ServerConfigurator;
 /**
  *
  * @author Joseph George Davis
@@ -37,6 +39,8 @@ public class DBUtil {
     protected static String PORT = null;
     protected static String DATABASE_PATH = null;
     protected static GraphDatabaseService database = null;
+     static WrappingNeoServerBootstrapper srv;
+    static String SERVER_HOSTNAME = "0.0.0.0";
 
     private final static String MYSQL_DB = "recodb";
     private final static String MYSQL_PORT = "3306";
@@ -99,13 +103,21 @@ public class DBUtil {
         database = graphdb;
 
         registerShutdownHook(graphdb);
-//        log.log(Level.INFO, "{0} Database test 2 done", graphdb.isAvailable(2));
- 
+        log.log(Level.INFO, "{0} Database test 2 done", graphdb.isAvailable(2));
+// 
+//        ServerConfigurator  config = new ServerConfigurator((GraphDatabaseAPI) graphdb);
+//                 
+//         config.configuration().setProperty(
+//         Configurator.WEBSERVER_PORT_PROPERTY_KEY,"9494");
+//         config.configuration().setProperty(Configurator.WEBSERVER_ADDRESS_PROPERTY_KEY, SERVER_HOSTNAME);
+//         config.configuration().setProperty(Configurator.HTTP_LOGGING,true);
+//         config.configuration().setProperty(Configurator.HTTP_CONTENT_LOGGING,true);
+//         
 //
-  //       srv = new WrappingNeoServerBootstrapper((GraphDatabaseAPI) graphdb, config);
+//        srv = new WrappingNeoServerBootstrapper((GraphDatabaseAPI) graphdb, config);
 //        
-//         srv.start();
-//         log.log(Level.INFO,"i am alive here");
+//        srv.start();
+       log.log(Level.INFO,"i am alive here");
        return  graphdb;
     }
 

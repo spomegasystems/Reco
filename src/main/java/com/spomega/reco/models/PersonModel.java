@@ -6,6 +6,10 @@
 
 package com.spomega.reco.models;
 
+import com.spomega.reco.domains.main.Person;
+import com.spomega.repo.util.Neo4jServices;
+import org.neo4j.graphdb.Node;
+
 /**
  *
  * @author Joseph George Davis
@@ -13,5 +17,28 @@ package com.spomega.reco.models;
  * description:
  */
 public class PersonModel {
+    
+    
+    
+    public Person getPersonByName(String firstname)
+    {
+        
+          String q = "MATCH (l:PERSON) WHERE l.firstname='"+firstname+"'  RETURN l ";
+
+        System.out.println("Query " + q);
+        try {
+            Node node = Neo4jServices.executeCypherQuerySingleResult(q, "l");
+            if (null != node) {
+                return new Person(node);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Unable to Find Person");
+        }
+       
+
+        return null;
+        
+    }
 
 }

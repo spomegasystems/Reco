@@ -43,12 +43,12 @@ public class RelationalServlet extends HttpServlet {
       
          
          String sql = "INSERT INTO "+"re_transaction"+" (`id`, `personid`, `itemId`, `price`, `itemtype`) VALUES ";
-         for(int i=0;i<100;i++)
+         for(int i=0;i<100000;i++)
          {
-             if(i==99)
-              sql += "(NULL,'"+random.nextInt(50)+"', 'title"+random.nextInt(50)+"', '"+random.nextInt(1000)+"','movie');";
+             if(i==99999)
+              sql += "(NULL,'"+random.nextInt(50)+"', 'itemname"+random.nextInt(50)+"', '"+random.nextInt(1000)+"','gadget');";
              else
-                sql += "(NULL,'"+random.nextInt(50)+"', 'title"+random.nextInt(50)+"', '"+random.nextInt(1000)+"','movie'),";   
+                sql += "(NULL,'"+random.nextInt(50)+"', 'itemname"+random.nextInt(50)+"', '"+random.nextInt(1000)+"','gadget'),";   
          }
          
          
